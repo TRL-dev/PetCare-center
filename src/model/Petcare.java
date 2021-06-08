@@ -54,7 +54,7 @@ public class Petcare {
         for(int i=4; i<MAXHIGHT;i++){
             for(int j=3;j<MAXWIDE;j++){
                 id++;
-                habitad[i][j]=new BirdCage(0,  0,  1,  0, 0, true, id);
+                habitad[i][j]=new BirdCage(1,  2,  20,  0, 0, true, id);
             }
         }
     }
@@ -235,6 +235,7 @@ public class Petcare {
                     }
                     veterinario.setCita(false);
                     veterinario.setNoConsulta(veterinario.getNoConsulta()+1);
+                    veterinario.setPet(null);
                 }
                 else{
                     message="opcion desconocida";
