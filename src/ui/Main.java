@@ -69,8 +69,22 @@ public class Main {
                         switch(o){
                             case 1:
                                 addPet();
-
                             break;
+
+                            case 2:
+                            break;
+
+                            case 3:
+                            break;
+
+                            case 4:
+                                petCageInfo();
+                            break;
+
+                            case 5:
+                                i=1;
+                            break;
+                            
                         }
                 break;
             }
@@ -440,8 +454,18 @@ public class Main {
                 
             }
         }
-
         message=petcare.petCage(largo, ancho, weight, occupationDays, name, raze, especie, age, s, prio, ownerName, toy, noToy, plant, noPlant, aquatic, material, colgando, id);
+        System.out.println(message);
+    }
+
+    public static void petCageInfo(){
+        String message="";
+
+        String name="";
+
+        System.out.println("ingrese el nombre de la mascota a buscar");
+        name=lector.nextLine();
+        message=petcare.petCageInfo(name);
         System.out.println(message);
     }
 }

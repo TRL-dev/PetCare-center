@@ -230,6 +230,7 @@ public class Petcare {
                             if(freeCage!=null){
                                 freeCage.setPet(veterinario.getPet());
                                 freeCage.setStatusJaula(3);
+                                message="la mascota ha sido enviada al habitad";
                             }
                         break;
                     }
@@ -410,6 +411,61 @@ public class Petcare {
             message="no hay habitads libres";
         }
  
+        return message;
+    }
+
+    public Jaulas searchOccupiedCage(String name){
+        Jaulas encontrado=null;
+        boolean continuar=true;
+        
+        for(int i=0; i<MAXHIGHT && continuar; i++){
+            for(int j=0; j<MAXWIDE;j++){
+                Jaulas jaula= habitad[i][j];
+                if(jaula.getPet()!=null){
+                    if(jaula.getPet().getName().equalsIgnoreCase(name)){
+                        encontrado=jaula;
+                        continuar=false;
+                    }
+                }
+                
+            }
+        }
+
+        return encontrado;
+    }
+
+    public String petCageInfo(String name){
+        String message="esta mascota no esta en la guarderia";
+        Jaulas cage=searchOccupiedCage(name);
+        String habitad="";
+        String status="";
+
+        if(cage.getPet().getEspecie().equalsIgnoreCase("gato")){
+            habitad="gatos";
+        }
+        else if(cage.getPet().getEspecie().equalsIgnoreCase("perro")){
+            habitad="perros";
+        }
+        else if(cage.getPet().getEspecie().equalsIgnoreCase("reptil")){
+            habitad="reptiles";
+        }
+        else if(cage.getPet().getEspecie().equalsIgnoreCase("conejo")){
+            habitad="conejos";
+        }
+        else if(cage.getPet().getEspecie().equalsIgnoreCase("pajaro")){
+            habitad="pajaros";
+        }
+
+        if(cage.getStatusJaula()==StatusJaula.OCUPIED_HELTHY){
+            status = "sano";
+        }
+        else if(cage.getStatusJaula()==StatusJaula.OCUPIED_SICK){
+            status = "enfermo";
+        }
+
+        if(cage!=null){
+            message="la mascota "+ name + " esta hospeda en la zona de "+ habitad + " en el habitad de id " + cage.getId() + " y esta " + status;
+        }
         return message;
     }
 
