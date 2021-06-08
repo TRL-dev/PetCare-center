@@ -468,5 +468,60 @@ public class Petcare {
         }
         return message;
     }
+    
+    public String lookCage(){
+        String message="";
+        String status="";
+        String type="";
+        int numG=0;
+        int numP=0;
+        int numR=0;
+        int numC=0;
+        int numA=0;
+
+        for(int i=0; i<MAXHIGHT; i++){
+            for(int j=0; j<MAXWIDE;j++){
+                Jaulas jaula = habitad[i][j];
+
+                if(jaula.getStatusJaula()==StatusJaula.EMPTY){
+                    status="V";
+                }
+                else if(jaula.getStatusJaula()==StatusJaula.OCUPIED_HELTHY){
+                    status="S";
+                }
+                else if(jaula.getStatusJaula()==StatusJaula.OCUPIED_SICK){
+                    status="E";
+                }
+
+                if(jaula instanceof Guacal){
+                    type="G";
+                    numG++;
+                    message+="|"+type+numG+status+ "|";
+                }
+                else if(jaula instanceof DogHouse){
+                    type="P";
+                    numP++;
+                    message+="|"+type+numP+status+ "|";
+                }
+                else if(jaula instanceof Aquary){
+                    type="R";
+                    numR++;
+                    message+="|"+type+numR+status+ "|";
+                }
+                else if(jaula instanceof Corral){
+                    type="C";
+                    numC++;
+                    message+="|"+type+numC+status+ "|";
+                }
+                else if(jaula instanceof BirdCage){
+                    type="A";
+                    numA++;
+                    message+="|"+type+numA+status+ "|";
+                }
+            }
+            message+="\n";
+        }
+        return message;
+    }
 
 } 

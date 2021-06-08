@@ -72,6 +72,7 @@ public class Main {
                             break;
 
                             case 2:
+                                lookCage();
                             break;
 
                             case 3:
@@ -467,5 +468,15 @@ public class Main {
         name=lector.nextLine();
         message=petcare.petCageInfo(name);
         System.out.println(message);
+    }
+
+    public static void lookCage(){
+        String message="";
+
+        System.out.println("a continuacion se muestra la informacion de los habitads:\nE= ocupado enfermo, S=ocupado sano, V= vacío");
+
+        message=petcare.lookCage();
+
+        System.out.print(message);
     }
 }
