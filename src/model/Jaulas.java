@@ -35,7 +35,7 @@ public class Jaulas {
         return status;
     }
 
-    public int occupationDays(){
+    public int getOccupationDays(){
         return occupationDays;
     }
 

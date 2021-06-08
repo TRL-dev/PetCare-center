@@ -83,7 +83,7 @@ public class Main {
                             break;
 
                             case 5:
-                                i=1;
+                                getCage();
                             break;
                             
                         }
@@ -158,7 +158,7 @@ public class Main {
         System.out.println("2: ver jaulas");
         System.out.println("3: ver estadisticas");
         System.out.println("4: ver datos de una mascota");
-        System.out.println("5: finalizar programa"); 
+        System.out.println("5: ver jaula especifica"); 
 
         while(i==0){
             opcion = lector.nextInt();
@@ -478,5 +478,18 @@ public class Main {
         message=petcare.lookCage();
 
         System.out.print(message);
+    }
+
+    public static void getCage(){
+        String message="";
+        int id=0;
+
+        System.out.println("ingrese la id de la jaula que quiera ver");
+        id=lector.nextInt();
+        lector.nextLine();
+
+        message=petcare.getCage(id);
+
+        System.out.println(message);
     }
 }

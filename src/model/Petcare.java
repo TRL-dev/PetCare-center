@@ -26,35 +26,35 @@ public class Petcare {
         for(int i=0; i<3;i++){
             for(int j=0; j<3;j++){
                 id++;
-                habitad[i][j]=new Guacal(1,  1,  30,  0, 0, id);
+                habitad[i][j]=new Guacal(1,  1,  30,  1, 0, id);
             }
         }
 
         for(int i=3;i<MAXHIGHT;i++){
             for(int j=0; j<3;j++){
                 id++;
-                habitad[i][j]=new DogHouse(3,  6,  56.5, 0, 0, "", 0, id);
+                habitad[i][j]=new DogHouse(3,  6,  56.5, 1, 0, "", 0, id);
             }
         }
 
         for(int i=0; i<2;i++){
             for(int j=3; j<MAXWIDE; j++){
                 id++;
-                habitad[i][j]=new Aquary(10,  15,  130,  0, 0, true, "", id);
+                habitad[i][j]=new Aquary(10,  15,  130,  1, 0, true, "", id);
             }
         }
 
         for(int i=2;i<4;i++){
             for(int j=3;j<MAXWIDE;j++){
                 id++;
-                habitad[i][j]=new Corral(4,  4,  70.65, 0, 0, "", 0, id);
+                habitad[i][j]=new Corral(4,  4,  70.65, 1, 0, "", 0, id);
             }
         }
 
         for(int i=4; i<MAXHIGHT;i++){
             for(int j=3;j<MAXWIDE;j++){
                 id++;
-                habitad[i][j]=new BirdCage(1,  2,  20,  0, 0, true, id);
+                habitad[i][j]=new BirdCage(1,  2,  20,  1, 0, true, id);
             }
         }
     }
@@ -524,4 +524,60 @@ public class Petcare {
         return message;
     }
 
+    public Jaulas searchCage(int id){
+        Jaulas encontrado=null;
+        boolean continuar=true;
+        
+        for(int i=0; i<MAXHIGHT && continuar; i++){
+            for(int j=0; j<MAXWIDE;j++){
+                Jaulas jaula= habitad[i][j];
+                if(jaula.getId()==id){
+                    encontrado=jaula;
+                    continuar=false;
+                }
+                
+            }
+        }
+
+        return encontrado;
+    }
+
+    public String getCage(int id){
+        String message="";
+        Jaulas jaula=searchCage(id);
+
+        String type="";
+        String status="";
+
+
+        if(jaula instanceof Guacal){
+            type="Guacal";
+        }
+        else if(jaula instanceof DogHouse){
+            type="DogHouse";
+        }
+        else if(jaula instanceof Aquary){
+            type="Aquary";
+        }
+        else if(jaula instanceof Corral){
+            type="Corral";
+        }
+        else if(jaula instanceof BirdCage){
+            type="BirdCage";
+        }
+
+
+        if(jaula.getStatusJaula()==StatusJaula.EMPTY){
+            status=" y esta vacia";
+        }
+        else if(jaula.getStatusJaula()==StatusJaula.OCUPIED_HELTHY){
+            status=" y tiene la mascota "+jaula.getPet().getName()+" la cual esta sana, esta se quedara por "+jaula.getOccupationDays();
+        }
+        else if(jaula.getStatusJaula()==StatusJaula.OCUPIED_SICK){
+            status=" y tiene la mascota "+jaula.getPet().getName()+" la cual esta enferma";
+        }
+
+        message="La jaula de la id "+jaula.getId()+ " es de tipo "+type+ "\nlas medidas de la jaula son\nlargo: "+jaula.getLargo()+"m \nancho: "+jaula.getAncho()+"m \npeso maximo: "+jaula.getWeight()+"kg \n"+status;
+        return message;
+    }
 } 
